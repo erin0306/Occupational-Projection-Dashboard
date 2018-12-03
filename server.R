@@ -26,7 +26,8 @@ my_server <- function(input, output, session) {
    
     
   })
-  
+
+
   ## UW Major drop down observer
   ## AKA "Please select your major:" observer
   observe({
@@ -47,6 +48,29 @@ my_server <- function(input, output, session) {
                       choices = occ_list$Jobs)
       
   })
+
+  ## Type of occupation type-in observer
+  ## AKA "Type in your type of occupation here:" observer
+  observe({
+    updated_text <- input$occ_major_text
+    ## grep but first letter have to match
+    matched_string <- occ_major$Jobs[tolower(substring(occ_major$Jobs, 1, nchar(updated_text))) == 
+                                       tolower(updated_text)][1]
+    fullList <- (matched_string == "" || is.na(matched_string))
+    if (fullList) {
+      updateSelectInput(session, 
+                        "occ_major",
+                        selected = all_const)         
+    } else {
+      updateSelectInput(session, 
+                        "occ_major",
+                        selected = matched_string)         
+    }
+    
+    
+  })
+  
+
   
   ## Major occupation to group occupation observer
   ## AKA "Select a type of occupation (Suggested based on your major):" observer
@@ -71,6 +95,28 @@ my_server <- function(input, output, session) {
                       choices = extract_row_groups$Jobs)
     
   })
+
+  ## Group occupation to specific occupation Type-in observer
+  ## AKA "Type in your occupational group here:" observer
+  observe({
+    updated_text <- input$occ_group_text
+    ## grep but first letter have to match
+    matched_string <- occ_groups$Jobs[tolower(substring(occ_groups$Jobs, 1, nchar(updated_text))) == 
+                                       tolower(updated_text)][1]
+    fullList <- (matched_string == "" || is.na(matched_string))
+    if (fullList) {
+      updateSelectInput(session, 
+                        "occ_group",
+                        selected = all_const)         
+    } else {
+      updateSelectInput(session, 
+                        "occ_group",
+                        selected = matched_string)         
+    }
+    
+    
+  })
+  
   
   ## group occupation to specific occupation observer
   ## AKA "Select an occupational group:" observer
@@ -112,6 +158,27 @@ my_server <- function(input, output, session) {
       return(median_wage_comparison(extract_row_occ, limit))
     })
   })
+
+  ## specific occupation to specific occupation Type-in observer
+  ## AKA "Type in your specific occupational here:" observer
+  observe({
+    updated_text <- input$occ_text
+    ## grep but first letter have to match
+    matched_string <- occ$Jobs[tolower(substring(occ$Jobs, 1, nchar(updated_text))) == 
+                                        tolower(updated_text)][1]
+    fullList <- (matched_string == "" || is.na(matched_string))
+    if (fullList) {
+      updateSelectInput(session, 
+                        "occ",
+                        selected = all_const)         
+    } else {
+      updateSelectInput(session, 
+                        "occ",
+                        selected = matched_string)         
+    }
+    
+    
+  })  
   
   ## specific occupation to specific occupation observer
   ## AKA "Please select a specific occupation:" observer

@@ -15,23 +15,36 @@ employment_projection <- tabItem(
         status = "success",
         solidHeader = TRUE,
         textInput(inputId = "UW_major_text",
-                  label = "Please type in your major:",
+                  label = "Type in your major here:",
                   value = NULL),
         
         selectInput(inputId = "UW_major_dropdown",
                     label = "Please select your major:",
                     choices = unique(uw_major_data$Major),
                     selected = "All"),
-        
+ 
+        textInput(inputId = "occ_major_text",
+                  label = "Type in your type of occupation here:",
+                  value = NULL),
+               
         selectInput(inputId = "occ_major",
                     label = "Please select a type of occupation (Suggested based on your major):",
                     choices = unique(occ_major$Jobs),
                     selected = "All"),
         
+        textInput(inputId = "occ_group_text",
+                  label = "Type in your occupational group here:",
+                  value = NULL),
+        
+        
         selectInput(inputId = "occ_group",
                     label = "Please select an occupational group:",
                     choices = unique(occ_groups$Jobs),
                     selected = "Top executives"),
+        
+        textInput(inputId = "occ_text",
+                  label = "Type in your specific occupational here:",
+                  value = NULL),
         
         selectInput(inputId = "occ",
                     label = "Please select a specific occupation:",
@@ -58,7 +71,7 @@ employment_projection <- tabItem(
         plotlyOutput("median_wage_compare")
     ),
     
-    box(title = "Your specific job",
+    box(title = "Your specific occupation",
         status = "primary",
         width = 12,
         solidHeader = TRUE,

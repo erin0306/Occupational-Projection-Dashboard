@@ -7,7 +7,7 @@ library(shinydashboard)
 employment_projection <- tabItem(
   tabName = "projection_tab",
   
-  titlePanel("2016 - 2026 Occupational Projection"),
+  titlePanel("2016 - 2026 Employment Occupational Projection"),
   fluidRow(
     
     box(width = 2,

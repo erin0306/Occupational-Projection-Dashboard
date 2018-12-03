@@ -57,14 +57,14 @@ employment_projection <- tabItem(
         
     ),
   
-    box(title = "2016 and 2026 employment projection", 
+    box(title = "2016 and 2026 employment projection between occupational group", 
         status = "primary", 
         width = 10, 
         solidHeader = TRUE,
         plotlyOutput("employment_projection")
     ),
     
-    box(title = "2017 median wage comparison",
+    box(title = "2017 median wage comparison between occupational group",
         status = "primary",
         width = 10,
         solidHeader = TRUE,

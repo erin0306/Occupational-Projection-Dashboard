@@ -116,7 +116,7 @@ my_server <- function(input, output, session) {
     
     
   })
-  
+
   
   ## group occupation to specific occupation observer
   ## AKA "Select an occupational group:" observer
@@ -163,8 +163,21 @@ my_server <- function(input, output, session) {
   ## AKA "Type in your specific occupational here:" observer
   observe({
     updated_text <- input$occ_text
+    updated_group <- input$occ_group
+    
+    if (updated_group == all_const) {
+      extract_row_occ <-  occ
+    } else {
+      extract_group <- occ_groups %>%
+        filter(Jobs == updated_group)
+      occ_code_layer1 <- as.character(extract_group$layer1)
+      occ_code_layer2 <- as.character(extract_group$layer2)
+      extract_row_occ <- occ %>%
+        filter(layer1 == occ_code_layer1) %>%
+        filter(layer2 == occ_code_layer2)      
+    }
     ## grep but first letter have to match
-    matched_string <- occ$Jobs[tolower(substring(occ$Jobs, 1, nchar(updated_text))) == 
+    matched_string <- extract_row_occ$Jobs[tolower(substring(extract_row_occ$Jobs, 1, nchar(updated_text))) == 
                                         tolower(updated_text)][1]
     fullList <- (matched_string == "" || is.na(matched_string))
     if (fullList) {

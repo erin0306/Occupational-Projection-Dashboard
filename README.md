@@ -1,27 +1,22 @@
 # Team DANE Final Project
+Group Members: Nam Pham, Alberto Melendez, Daniella Mesler, and Erin Cheng
 
-## Project Overview
-get this data from proposal and update when need to
+## Project Overview and Purpose
+We worked with the occupational employment and wage data in U.S. obtained through the Bureau of Labor Statistics website, which publishes a large amount of information by occupation, including career information, employment levels and projections, and data on earnings and working conditions. These estimates are
+calculated with data collected from employers in all industry sectors in metropolitan and nonmetropolitan areas. Our targeted audience will be university students seeking employment because we anticipate that students are more interested in future trends in employment as they look ahead to graduation. We expect our shinyapp to provide insight into various industries and associated occupations through outlining wages, job stability, trends, projections, and a map. Our shinyapp may assist graduating students in making informed decisions about which occupation(s) to pursue and current students about their areas of study.
 
 ## Data Source
-1. Downloaded occupational data by state from https://www.bls.gov/oes/current/oes_wa.htm#11-0000
+1. Downloaded occupational data by state from the Bureau of Labor Statistics https://www.bls.gov/oes/current/oes_wa.htm#11-0000
 
 2. Dowloaded Occupational projections, 2016–26, and worker characteristics, 2016 (Numbers in thousands)
-from https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.htm#1
-there are several tables in this excel file so we need to decide which ones we want  and how we want to use them:
+from the Bureau of Labor Statistics  https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.htm#1. There are several tables in this excel file but we chose Table 1.7 for our second dataset --> "Table 1.7 Occupational projections, 2016-26, and worker characteristics, 2016
 
-Table 1.1 Employment by major occupational group, 2016 and projected 2026
-Table 1.2 Employment by detailed occupation, 2016 and projected 2026
-Table 1.3 Fastest growing occupations, 2016 and projected 2026
-Table 1.4 Occupations with the most job growth, 2016 and projected 2026
-Table 1.5 Fastest declining occupations, 2016 and projected 2026
-Table 1.6 Occupations with the largest job declines, 2016 and projected 2026
-"Table 1.7 Occupational projections, 2016-26, and worker characteristics, 2016
-"
-Table 1.8 2016-26 Industry-occupation matrix data, by occupation
-Table 1.9 2016-26 Industry-occupation matrix data, by industry
-Table 1.10 Occupational separations and openings, projected 2016-26
-Table 1.11 Educational attainment for workers 25 years and older by detailed occupation, 2016-17
-Table 1.12 Education and training assignments by detailed occupation, 2016
 
 ## Data Manipulation Summary and Steps Completed
+- Downloaded data from the sources above.
+- Wrote R script to read data and organize it. Wrote data wrangling code to be used as basis for the interactive data used to build the widgets for source #1 (basic statistics). Pushed to github for next steps.
+- Pulled data from github and created app and associated widgets for source #2 (projectional data coupled with UW major data). *Nam describe your steps here*
+   - *Note!* The photo of the Huksy (bottom of page) changes depending on what occupation is chosen (the educational requirements of the occupation, one photo for if only an associate's is required, another photo for if a bachelors is required, etc).
+- Pulled data from github and created associated widgets for source #1 (occupational data by state). *Erin and Alberto describe your steps here*
+- Compiled code and embedded into a single app with two tabs (one for each data set).
+- Pushed remaining changes to github and closed out all issues

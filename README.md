@@ -1,5 +1,5 @@
 # Team DANE Final Project
-Group Members: Nam Pham, Alberto Melendez, Daniella Mesler, and Erin Cheng
+Group Members: Nam Pham, Alberto Melendez, Daniella Mesler, and Erin Chang
 
 ## Project Overview and Purpose
 We worked with the occupational employment and wage data in U.S. obtained through the Bureau of Labor Statistics website, which publishes a large amount of information by occupation, including career information, employment levels and projections, and data on earnings and working conditions. These estimates are

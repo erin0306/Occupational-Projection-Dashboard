@@ -11,6 +11,7 @@ calculated with data collected from employers in all industry sectors in metropo
 2. Dowloaded Occupational projections, 2016–26, and worker characteristics, 2016 (Numbers in thousands)
 from the Bureau of Labor Statistics  https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.htm#1. There are several tables in this excel file but we chose Table 1.7 for our second dataset --> "Table 1.7 Occupational projections, 2016-26, and worker characteristics, 2016
 
+3. UW Majors data *need summary and link* 
 
 ## Data Manipulation Summary and Steps Completed
 - Downloaded data from the sources above.

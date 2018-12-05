@@ -12,7 +12,7 @@ employment_projection <- tabItem(
     
     box(width = 2,
         title = "Widget", 
-        status = "success",
+        status = "warning",
         solidHeader = TRUE,
         textInput(inputId = "UW_major_text",
                   label = "Type in your major here:",
@@ -47,7 +47,7 @@ employment_projection <- tabItem(
                   value = NULL),
         
         selectInput(inputId = "occ",
-                    label = "Please select a specific occupation:",
+                    label = "Please select a specific occupation (Make sure to hunt for different Huskies):",
                     choices = unique(occ$Jobs),
                     selected = "Chief executives"),
         
@@ -58,21 +58,21 @@ employment_projection <- tabItem(
     ),
   
     box(title = "2016 and 2026 employment projection between occupational group", 
-        status = "primary", 
+        status = "info", 
         width = 10, 
         solidHeader = TRUE,
         plotlyOutput("employment_projection")
     ),
     
     box(title = "2017 median wage comparison between occupational group",
-        status = "primary",
+        status = "info",
         width = 10,
         solidHeader = TRUE,
         plotlyOutput("median_wage_compare")
     ),
     
     box(title = "Your specific occupation",
-        status = "primary",
+        status = "info",
         width = 12,
         solidHeader = TRUE,
         #textOutput("specific_source_code"),

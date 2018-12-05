@@ -38,9 +38,10 @@ specific_table_information <- function(df, job) {
   
   beginTag <- paste0("<font size = \"6>\"" ,"<p>",
                      "<img src=\"", entry_equivalent_husky(entry_edu) ,
-                     "\" align=\"left\" height=300 width=300 ", 
-                     "alt = \"", entry_edu, "\"",
-                     "/>")
+                     "\" align=\"left\" height=300 width=300",
+                     " border=\"6\"", 
+                     " title = \"", entry_edu, "\"",
+                     ">")
   begin <-
   paste0("Your selected specific occupation is ", job, ". According to the dataset from the Burreo of Labor
          Statistic website, the employment in 2016 is ", employment_2016, " thousands and the employment in 
@@ -110,7 +111,6 @@ median_wage_comparison <- function(df, limit) {
       x = ~Jobs,
       y = ~Median_Annual_2017,
       type = "bar",
-      mode = "markers",
       color = "plum") %>%
     layout(title = "2017 Annual Median Wage Between Occupation Groups",
            barmode = "group",

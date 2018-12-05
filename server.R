@@ -1,6 +1,7 @@
 library(shiny)
 library(dplyr)
 library(stringr)
+library(readxl)
 
 source("scripts/projection_graph.R")
 
@@ -66,8 +67,6 @@ my_server <- function(input, output, session) {
                         "occ_major",
                         selected = matched_string)         
     }
-    
-    
   })
   
 
@@ -198,6 +197,7 @@ my_server <- function(input, output, session) {
   observe({
     updated_job <- input$occ
     
+    # HTML debug
     #output$specific_source_code <- renderText({
     #  specific_table_information(occ, updated_job)
     #})
@@ -207,9 +207,192 @@ my_server <- function(input, output, session) {
      HTML(specific_table_information(occ, updated_job))
     )
   })
-  
+  ### END OF EMPLOYMENT PROJECTION 
 
+#############################################################################################################
+  
+  ## Type of occupation type-in observer
+  ## AKA "Type in your occupational group here:" observer
+  observe({
+    updated_text <- input$occ_group_2017_text
+    ## grep but first letter have to match
+    matched_string <- occ_groups_2017$OCC_TITLE[tolower(substring(occ_groups_2017$OCC_TITLE, 1, nchar(updated_text))) == 
+                                       tolower(updated_text)][1]
+    fullList <- (matched_string == "" || is.na(matched_string))
+    if (fullList) {
+      updateSelectInput(session, 
+                        "occ_group_2017",
+                        selected = "")         
+    } else {
+      updateSelectInput(session, 
+                        "occ_group_2017",
+                        selected = matched_string)         
+    }
+  })
+  
+  ## Type of occupation type-in observer
+  ## AKA "Type in your occupational title here:" observer
+  observe({
+    updated_text <- input$occupation_text
+    update_group <- input$occ_group_2017
+    update_state <- input$state
+    
+    # Get the row of the requested state from major occupational group data
+    extract_row <- filter(filter(occ_groups_2017, OCC_TITLE == update_group), STATE == update_state)
+    # Extract occupational code of that major occupational group
+    occ_code <- substring(extract_row[1,4],1,3)
+    # Create a new dataframe with only occupations from the requested state and group
+    update_occ_data <- occ_2017 %>% filter(STATE == update_state) %>%
+      filter(str_detect(OCC_CODE,occ_code))
+    
+    
+    ## grep but first letter have to match
+    matched_string <- update_occ_data$OCC_TITLE[tolower(substring(update_occ_data$OCC_TITLE, 1, nchar(updated_text))) == 
+                                                  tolower(updated_text)][1]
+    fullList <- (matched_string == "" || is.na(matched_string))
+    if (fullList) {
+      updateSelectInput(session, 
+                        "occupation",
+                        selected = "")         
+    } else {
+      updateSelectInput(session, 
+                        "occupation",
+                        selected = matched_string)         
+    }
+  })
+  
+  
+  ## Erin
+  observe({
+    update_group <- input$occ_group_2017
+    update_state <- input$state
+
+    # Get the row of the requested state from major occupational group data
+    extract_row <- filter(filter(occ_groups_2017, OCC_TITLE == update_group), STATE == update_state)
+    # Extract occupational code of that major occupational group
+    occ_code <- substring(extract_row[1,4],1,3)
+    # Create a new dataframe with only occupations from the requested state and group
+    update_occ_data <- occ_2017 %>% filter(STATE == update_state) %>%
+      filter(str_detect(OCC_CODE,occ_code))
+
+
+    output$pie <- renderPlotly({
+      plot_ly(update_occ_data, 
+              labels = ~OCC_TITLE, 
+              values= ~TOT_EMP , 
+              type = "pie",
+              width = 1200, 
+              textposition = "inside") %>%
+        layout(font = list(size = 8))
+    })
+    output$hour <- renderPlotly({
+      plot_ly(update_occ_data, 
+              x = ~OCC_TITLE, 
+              y = ~round(as.numeric(H_MEAN), digits = 2), 
+              type = "bar",
+              color = "plum",
+              width = 1200) %>%
+        layout(xaxis = list(title = "test",
+                            ascending= TRUE),
+               yaxis = list(title = "Count"))
+
+    })
+    output$annual_wage <- renderPlotly({
+      plot_ly(update_occ_data, 
+              x = ~OCC_TITLE, 
+              y = ~as.numeric(A_MEAN), 
+              type = "bar",
+              width = 1200,
+              marker = list(color = 'rgb(58,200,225)',
+                            line = list(color = 'rgb(8,48,107)'))) %>%
+        layout(xaxis = list(title = "test"),
+               yaxis = list(title = "Count"))
+
+    })
+  })
+  
+  ## Alberto
+  
+  
+  ## Type of occupation type-in observer
+  ## AKA "Type in a State:" observer
+  observe({
+    updated_text <- input$state_text
+    ## grep but first letter have to match
+    matched_string <- data_2017$STATE[tolower(substring(data_2017$STATE, 1, nchar(updated_text))) == 
+                                                  tolower(updated_text)][1]
+    if (tolower(updated_text) %in% tolower(unique(data_2017$ST))) {
+      matched_string <- as.character(data_2017 %>% 
+        filter(ST == toupper(updated_text)) %>%
+        select(STATE) %>%
+        unique())
+    }
+    fullList <- (matched_string == "" || is.na(matched_string))
+    if (fullList) {
+      updateSelectInput(session, 
+                        "state",
+                        selected = "")         
+    } else {
+      updateSelectInput(session, 
+                        "state",
+                        selected = matched_string)         
+    }
+  })
+  
+  observe({
+    update_group <- input$occ_group_2017
+    
+    # Get the row of the requested state from major occupational group data
+    extract_row <- filter(filter(occ_groups_2017, OCC_TITLE == update_group), STATE == "Washington")
+    # Extract occupational code of that major occupational group
+    occ_code <- substring(extract_row[1, ]$OCC_CODE, 1, 3)
+    # Create a new dataframe with only occupations from the requested state and group
+    update_occ_data <- occ_2017 %>% filter(STATE == "Washington") %>%
+      filter(str_detect(OCC_CODE, occ_code))
+    
+    
+    updateSelectInput(session, "occupation",
+                      choices = update_occ_data$OCC_TITLE
+    )
+    
+  })
+  
+  ## TOTAL EMPLOYMENT CHOROPLETH
+  observe({
+    update_occ <- input$occupation
+    update_occ <- occ_2017 %>% filter(str_detect(OCC_TITLE, update_occ))
+    output$USA_total_employment <-  renderPlotly({
+      plot_ly(
+        data = update_occ,
+        type = "choropleth",
+        locations = ~ST,
+        locationmode = "USA-states",
+        z = ~TOT_EMP,
+        #z = ~H_MEAN,
+        colorscale = "Reds") %>% 
+        layout(geo = list(scope = "usa"))
+    })
+    output$USA_hourly_wage <-  renderPlotly({
+      plot_ly(
+        data = update_occ,
+        type = "choropleth",
+        locations = ~ST,
+        locationmode = "USA-states",
+        z = ~H_MEAN,
+        colorscale = "YlGnBu") %>% 
+        layout(geo = list(scope = "usa"))
+    })
+    output$USA_annual_wage <-  renderPlotly({
+      plot_ly(
+        data = update_occ,
+        type = "choropleth",
+        locations = ~ST,
+        locationmode = "USA-states",
+        z = ~A_MEAN,
+        colorscale = "Greens") %>% 
+        layout(geo = list(scope = "usa"))
+    })
+  })
     
 }
-  
-shinyServer(my_server)
+

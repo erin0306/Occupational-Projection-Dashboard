@@ -5,17 +5,24 @@ library(stringr)
 
 source("scripts/projection.R")
 source("Scripts/overview.R")
+source("scripts/current_occupation.R")
 
 my_ui <- dashboardPage(
+  
+
+  
+  skin = "purple",
   dashboardHeader(title = "Employment Data"),
   dashboardSidebar(sidebarMenu(
     menuItem("Overview", tabName = "overview_tab", icon = icon("home")),
-    menuItem("Employment Projection", tabName = "projection_tab", icon = icon("bar-chart"))
+    menuItem("Employment Projection", tabName = "projection_tab", icon = icon("chart-line")),
+    menuItem("Current Occupation", tabName = "curr_occ_tab", icon = icon("pie-chart"))
   )),
   dashboardBody(
     tabItems(
       overview,
-      employment_projection
+      employment_projection,
+      current_occ
     ))
 )
 

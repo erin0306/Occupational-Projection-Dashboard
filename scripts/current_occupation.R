@@ -8,26 +8,37 @@ current_occ <- tabItem(
         title = "Occupation Widget",
         status = "warning",
         solidHeader = TRUE,
+        
+        ## Occupational Group type-in
+        ## What you type here will change the Occupational Group drop-down
         textInput(inputId = "occ_group_2017_text",
                   label = "Type in your occupational group here:",
                   value = NULL),
         
+        ## Occupational Group
+        ## What you selected here will change the available Specific Occupation options
         selectInput(inputId = "occ_group_2017",
                     label = "Select an occupational group:",
                     choices = unique(occ_groups_2017$OCC_TITLE),
                     selected = "Management Occupations"),
         
         ## Alberto
+        ## Specific Occupation type-in
+        ## What you type here will change the Specific Occupation drop-down
         textInput(inputId = "occupation_text",
-                  label = "Type in your occupational title here:",
+                  label = "Type in your specific occupation here:",
                   value = NULL),
         
+        ## Specific Occupation
+        ## What you selected here will change the U.S.A total employment, hourly and annual wage map.
         selectInput(inputId = "occupation",
-                    label = strong("Occupational Title"),
-                    choices = unique(occ$OCC_TITLE)
+                    label = strong("Specific Occupation"),
+                    choices = unique(occ_2017$OCC_TITLE)
         )
     ),
     ## Alberto
+    
+    ## U.S.A total employment, hourly and annual wage map
     box(width = 10,
         title = "Map",
         status = "info",
@@ -49,9 +60,14 @@ current_occ <- tabItem(
         status = "warning",
         solidHeader = TRUE,
         ## Erin
+        ## State type-in
+        ## What you type here will change the State drop-down
         textInput(inputId = "state_text",
                   label = "Type in a State:",
                   value = NULL),
+        
+        ## State drop-down
+        ## What you selected here will change the State-specific total employment, hourly and annual wage chart
         selectInput(inputId = "state",
                     label = "Select a State:",
                     choices = unique(data_2017$STATE),
@@ -59,6 +75,8 @@ current_occ <- tabItem(
     ), 
     
     ## Erin
+    
+    ## State-specific total employment, hourly and annual wage chart
     box(width = 10,
         title = "2017 Occupational Data",
         status = "info",

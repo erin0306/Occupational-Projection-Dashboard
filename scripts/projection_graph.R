@@ -6,6 +6,7 @@ library('shiny')
 library('dplyr')
 library('plotly')
 
+## Check the entry degree and map to corresponding husky picture
 entry_equivalent_husky <- function(entry) {
   switch(entry,
          "Bachelor's degree" = "Banchelor_Husky.PNG",
@@ -18,16 +19,22 @@ entry_equivalent_husky <- function(entry) {
          "Doctoral or professional degree" = "Doctorate_Husky.png")
 }
 
+## This function displays the specific table information 
+## Paramter: 
+## df : given dataframe, occ in this case
+## job : given job (i.e. "Chief executives")
 specific_table_information <- function(df, job) {
   job_row <- df %>% filter(Jobs == job)
   ##Getting the mean of all Jobs
   df[df == ">=$208,000"] <- "208000"
   all_job_mean <- df %>% 
-    ##filter em dash out
+    ##filter <<em dash>> out 
     filter(Median_Annual_2017 != "\u2014")
+  ## Calculating mean for all job possible for comparison
   all_job_mean <- all_job_mean %>%
     mutate(Mean = mean(as.numeric(Median_Annual_2017)))
-  all_job_mean <- round(as.numeric(all_job_mean[1, ]$Mean), digits = 0)
+  ## Turn non numeric data into numeric and round
+  all_job_mean <- round(as.numeric(all_job_mean[1, ]$Mean), digits = 0) 
   employment_2016 <- job_row$Employment_2016
   employment_2026 <- job_row$Employment_2026
   employment_change <- as.numeric(job_row$Employment_Change_Percent)
@@ -35,11 +42,11 @@ specific_table_information <- function(df, job) {
   entry_edu <- job_row$Entry_Education
   work_exp <- job_row$Work_Experience
   tags$img(src = "Banchelor_Husky.PNG", width = 300, height = 300)
-  
+  ## Husky img tag
   beginTag <- paste0("<font size = \"6>\"" ,"<p>",
                      "<img src=\"", entry_equivalent_husky(entry_edu) ,
                      "\" align=\"left\" height=300 width=300",
-                     " border=\"6\"", 
+                     " style =\"border:10px solid white\" ", 
                      " title = \"", entry_edu, "\"",
                      ">")
   begin <-
@@ -67,6 +74,10 @@ specific_table_information <- function(df, job) {
 }
 
 
+## This function graph the 2016-2026 projection chart
+## Parameter:
+## df : given data frame, occ in this case
+## limit : limit how many data is displayed on the screen at once.
 employment_projection_chart <- function(df, limit) {
   if (nrow(df) > limit) {
     p <- df[1 : limit, ]
@@ -93,7 +104,10 @@ employment_projection_chart <- function(df, limit) {
   return(p)
 }
 
-
+## This function graph the 2017 median wage comparison
+## Parameter:
+## df : given data frame, occ in this case
+## limit : limit how many data is displayed on the screen at once.
 median_wage_comparison <- function(df, limit) {
   df <- df %>% filter(Median_Annual_2017 != "-")
   
@@ -104,6 +118,7 @@ median_wage_comparison <- function(df, limit) {
   }  
   p <- p %>% select(Jobs, Median_Annual_2017)
   
+  ## If the wage is over 208000 turns it into 208000
   p[p == ">=$208,000"] <- "208000"
   p$Median_Annual_2017 <- as.numeric(p$Median_Annual_2017)
   p <- p %>% 

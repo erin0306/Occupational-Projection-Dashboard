@@ -29,6 +29,7 @@ data <- data %>%
 data <- data[3:(nrow(data) - 4), ]
 
 ##Formatting data to correct format
+## (i.e. rounding 46.99999999999999 into 47)
 data$Employment_2016 <- data$Employment_2016 %>% 
   as.numeric() %>% round(digits = 1)
 data$Employment_2026 <- data$Employment_2026 %>% 
@@ -41,6 +42,14 @@ data$Percent_Self_Employed_2016 <- data$Percent_Self_Employed_2016 %>%
   as.numeric() %>% round(digits = 1)
 data$Occupational_Openings <- data$Occupational_Openings %>%
   as.numeric() %>% round(digits = 1)
+
+## Making layer 1 and 2 based on the occupational code. Layer 3 is done later
+## If code is 11-0000
+## layer1 is 11
+## layer2 is 0
+## layer3 is 000
+## This is so that we can correctly deal with our data hiearchy
+## As some items are in a sub category of other items and we want to be able to deal with this
 
 data$layer1 <- substr(data$Code, 1, 2)
 data$layer2 <- substr(data$Code, 4, 7)

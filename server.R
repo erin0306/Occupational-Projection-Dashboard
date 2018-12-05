@@ -7,6 +7,10 @@ source("scripts/projection_graph.R")
 
 my_server <- function(input, output, session) {
   
+  ## All of our drop down menus link together.
+  ## For the Employment Projection Tab
+  ## UW major -> Type of Occupation -> Occupational Group -> Specific Occupation
+  
   ## UW Major type-in observer
   ## AKA "Please type in your major:" observer
   observe({
@@ -148,11 +152,12 @@ my_server <- function(input, output, session) {
                       choices = extract_row_occ$Jobs)
     
 
-    
+    ## Making 2016-2026 chart
     output$employment_projection <- renderPlotly({
       return(employment_projection_chart(extract_row_occ, limit))
     })
     
+    ## Making 2017 median wage comparison chart
     output$median_wage_compare <- renderPlotly({
       return(median_wage_comparison(extract_row_occ, limit))
     })
@@ -275,7 +280,7 @@ my_server <- function(input, output, session) {
     update_occ_data <- occ_2017 %>% filter(STATE == update_state) %>%
       filter(str_detect(OCC_CODE,occ_code))
 
-
+    ## Pie chart for total employment based on selected state
     output$pie <- renderPlotly({
       plot_ly(update_occ_data, 
               labels = ~OCC_TITLE, 
@@ -285,6 +290,8 @@ my_server <- function(input, output, session) {
               textposition = "inside") %>%
         layout(font = list(size = 8))
     })
+    
+    ## Bar chart for mean hourly wage based on selected state
     output$hour <- renderPlotly({
       plot_ly(update_occ_data, 
               x = ~OCC_TITLE, 
@@ -297,6 +304,8 @@ my_server <- function(input, output, session) {
                yaxis = list(title = "Count"))
 
     })
+    
+    # Bar chart for mean annual wage based on selected state
     output$annual_wage <- renderPlotly({
       plot_ly(update_occ_data, 
               x = ~OCC_TITLE, 
@@ -321,6 +330,8 @@ my_server <- function(input, output, session) {
     ## grep but first letter have to match
     matched_string <- data_2017$STATE[tolower(substring(data_2017$STATE, 1, nchar(updated_text))) == 
                                                   tolower(updated_text)][1]
+    
+    ## Matching State Acronym (WA -> washington, case insentitive)
     if (tolower(updated_text) %in% tolower(unique(data_2017$ST))) {
       matched_string <- as.character(data_2017 %>% 
         filter(ST == toupper(updated_text)) %>%

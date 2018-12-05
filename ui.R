@@ -9,8 +9,6 @@ source("scripts/current_occupation.R")
 
 my_ui <- dashboardPage(
   
-
-  
   skin = "purple",
   dashboardHeader(title = "Employment Data"),
   dashboardSidebar(sidebarMenu(

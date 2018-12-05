@@ -37,7 +37,10 @@ current_occ <- tabItem(
           tabPanel("Hourly Wage", plotlyOutput("USA_hourly_wage")),
           tabPanel("Annual Wage", plotlyOutput("USA_annual_wage"))
         )        
-    ),
+    )
+  ),
+  
+  fluidRow(
     
     ## Select state widget
     ## Erin

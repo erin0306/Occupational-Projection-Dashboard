@@ -10,12 +10,12 @@ calculated with data collected from employers in all industry sectors in metropo
 https://npham24.shinyapps.io/info201-final-dane/
 
 ## Data Source
-1. ![Occupational data by state from the Bureau of Labor Statistics](https://www.bls.gov/oes/current/oes_wa.htm#11-0000)
+1. [Occupational data by state from the Bureau of Labor Statistics](https://www.bls.gov/oes/current/oes_wa.htm#11-0000)
 
-2. ![Occupational projections, 2016–26, and worker characteristics, 2016 (Numbers in thousands)
+2. [Occupational projections, 2016–26, and worker characteristics, 2016 (Numbers in thousands)
 from the Bureau of Labor Statistics](https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.htm#1). There are several tables in this excel file but we chose Table 1.7 for our second dataset --> "Table 1.7 Occupational projections, 2016-26, and worker characteristics, 2016
 
-3. UW Majors data, we created this dataset using source from the ![UW website](https://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/)
+3. UW Majors data, we created this dataset using source from the [UW website](https://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/)
 
 ## Data Manipulation Summary and Steps Completed
 - Downloaded data from the sources above.

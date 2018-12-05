@@ -75,7 +75,7 @@ employment_projection <- tabItem(
         status = "info",
         width = 12,
         solidHeader = TRUE,
-        textOutput("specific_source_code"),
+        #textOutput("specific_source_code"),
         uiOutput("specific_occupation")
     )
   )

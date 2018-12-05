@@ -197,16 +197,19 @@ my_server <- function(input, output, session) {
   observe({
     updated_job <- input$occ
     
-    output$specific_source_code <- renderText({
-      specific_table_information(occ, updated_job)
-    })
+    # HTML debug
+    #output$specific_source_code <- renderText({
+    #  specific_table_information(occ, updated_job)
+    #})
     
     output$specific_occupation <- renderUI(
     #tags$img(src = "www/Banchelor_Husky.PNG", width = 300, height = 300)
      HTML(specific_table_information(occ, updated_job))
     )
   })
-  # 
+  ### END OF EMPLOYMENT PROJECTION 
+
+#############################################################################################################
   
   ## Type of occupation type-in observer
   ## AKA "Type in your occupational group here:" observer
@@ -257,8 +260,9 @@ my_server <- function(input, output, session) {
                         selected = matched_string)         
     }
   })
-  ## Erin
   
+  
+  ## Erin
   observe({
     update_group <- input$occ_group_2017
     update_state <- input$state

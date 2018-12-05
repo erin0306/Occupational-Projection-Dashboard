@@ -4,10 +4,13 @@ overview <- tabItem(
   fluidRow(
     box(width = 12,
         title = "Overview",
-        status = "success",
+        status = "info",
         solidHeader = TRUE,
         h2("Project Description"),
-        HTML("<font size = 4><p>We will be working with the occupational employment and wage data in the U.S.
+        HTML("<font size = 4><p>
+             Our project's goal is to analyze various occupations and industries through outlining 
+             wages, job stability, future trends, and geographical representation. 
+             We will be working with the occupational employment and wage data in the U.S.
              obtained through the <a href=\"https://www.bls.gov/oes/tables.htm\">Bureau 
              of Labor Statistics</a> website, which publishes a large amount of information by occupation, 
              including career information, employment levels and projections, and data on earnings and working 
@@ -39,6 +42,16 @@ overview <- tabItem(
         
         HTML("<hr>"),
         
+        h2("Current Occupation"),
+        HTML("<font size = 4><p>The Current Occupation tab allows users to choose an occupation and see the 
+             heatmap of total employment, mean hourly wage, and mean annual wage across the different states 
+             in the United States. Depending on the state and the occupational group that are chosen, the 
+             user can also compare occupations through looking at the total employment with a pie chart. 
+             The user can also compare mean hourly wage and mean annual wage with bar charts.
+             </p></font>"),
+        
+        HTML("<hr>"),
+        
         h2("Contributors"),
         h4(">Nam Pham"),
         h4(">Erin Chan"),
@@ -46,9 +59,5 @@ overview <- tabItem(
         h4(">Daniella Mesler")
         
         )
-    
-
-
-
   )
 )

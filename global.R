@@ -9,3 +9,8 @@ all_const <- uw_major_data[1,1]
 occ_summary <- rbind(c("All",NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA), occ_summary)
 occ_major <- rbind(c("All",NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA), occ_major)
 occ_groups <- rbind(c("All",NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA), occ_groups)
+
+
+data_2017 <- read_excel("data/occupational_data_by_state.xlsx")
+occ_groups_2017 <- filter(data_2017, OCC_GROUP == "major")
+occ_2017 <- data_2017 %>% filter(OCC_GROUP == "detailed")

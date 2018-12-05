@@ -10,10 +10,10 @@ calculated with data collected from employers in all industry sectors in metropo
 https://npham24.shinyapps.io/info201-final-dane/
 
 ## Data Source
-1. Downloaded occupational data by state from the Bureau of Labor Statistics https://www.bls.gov/oes/current/oes_wa.htm#11-0000
+1. ![Occupational data by state from the Bureau of Labor Statistics](https://www.bls.gov/oes/current/oes_wa.htm#11-0000)
 
-2. Dowloaded Occupational projections, 2016–26, and worker characteristics, 2016 (Numbers in thousands)
-from the Bureau of Labor Statistics  https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.htm#1. There are several tables in this excel file but we chose Table 1.7 for our second dataset --> "Table 1.7 Occupational projections, 2016-26, and worker characteristics, 2016
+2. ![Occupational projections, 2016–26, and worker characteristics, 2016 (Numbers in thousands)
+from the Bureau of Labor Statistics](https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.htm#1). There are several tables in this excel file but we chose Table 1.7 for our second dataset --> "Table 1.7 Occupational projections, 2016-26, and worker characteristics, 2016
 
 3. UW Majors data, we created this dataset using source from the ![UW website](https://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/)
 
@@ -23,6 +23,8 @@ from the Bureau of Labor Statistics  https://www.bls.gov/emp/tables/occupational
 - Pulled data from Github and created app and associated widgets for source #2 (projectional data coupled with UW major data). Chained multiple observe function in server and data wrangling for each observe function in order to correctly link the selection together in order to create the graph/ chart.
 - Used shinydashboard for better visual presentation. 
    - *Note!* The photo of the Huksy (bottom of page) changes depending on what occupation is chosen (the educational requirements of the occupation, one photo for if only an associate's is required, another photo for if a bachelors is required, etc).
-- Pulled data from github and created associated widgets for source #1 (occupational data by state). *Erin and Alberto describe your steps here*
+- Pulled data from github and created associated widgets for source #1 (occupational data by state). 
+- Created widgets that update depending on user input and heatmaps that shows data of interest across different states.
+- created pie charts and bar charts that compare occupations within the chosen field.
 - Compiled code and embedded into a single app with two tabs (one for each data set).
 - Pushed remaining changes to github and closed out all issues

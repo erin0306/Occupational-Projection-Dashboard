@@ -57,7 +57,7 @@ overview <- tabItem(
         h2("Contributors"),
         h4(">Nam Pham"),
         h4(">Erin Chan"),
-        h4(">Alberto Meléndez"),
+        h4(">Alberto Melendez"),
         h4(">Daniella Mesler")
         
         )

@@ -4,7 +4,7 @@ library(shiny)
 library(stringr)
 
 source("scripts/projection.R")
-source("Scripts/overview.R")
+source("scripts/overview.R")
 source("scripts/current_occupation.R")
 
 my_ui <- dashboardPage(

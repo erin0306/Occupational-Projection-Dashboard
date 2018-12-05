@@ -350,7 +350,7 @@ my_server <- function(input, output, session) {
     update_occ_data <- occ_2017 %>% filter(STATE == "Washington") %>%
       filter(str_detect(OCC_CODE, occ_code))
     
-    
+    # Updates the occupation widget
     updateSelectInput(session, "occupation",
                       choices = update_occ_data$OCC_TITLE
     )
@@ -359,8 +359,12 @@ my_server <- function(input, output, session) {
   
   ## TOTAL EMPLOYMENT CHOROPLETH
   observe({
+    # Take in the input occupation field
     update_occ <- input$occupation
+    # Filter based on input
     update_occ <- occ_2017 %>% filter(str_detect(OCC_TITLE, update_occ))
+    
+    # Maps out the total employment in each state with a choropleth of the U.S.A.
     output$USA_total_employment <-  renderPlotly({
       plot_ly(
         data = update_occ,
@@ -368,10 +372,11 @@ my_server <- function(input, output, session) {
         locations = ~ST,
         locationmode = "USA-states",
         z = ~TOT_EMP,
-        #z = ~H_MEAN,
         colorscale = "Reds") %>% 
         layout(geo = list(scope = "usa"))
     })
+    
+    # Maps out the hourly wage in each state with a choropleth of the U.S.A.
     output$USA_hourly_wage <-  renderPlotly({
       plot_ly(
         data = update_occ,
@@ -382,6 +387,8 @@ my_server <- function(input, output, session) {
         colorscale = "YlGnBu") %>% 
         layout(geo = list(scope = "usa"))
     })
+    
+    # Maps out the annual wage in each state with a choropleth of the U.S.A.
     output$USA_annual_wage <-  renderPlotly({
       plot_ly(
         data = update_occ,

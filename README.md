@@ -22,9 +22,9 @@ from the Bureau of Labor Statistics](https://www.bls.gov/emp/tables/occupational
 - Wrote R script to read data and organize it. Wrote data wrangling code to be used as basis for the interactive data used to build the widgets for source #1 (basic statistics). Pushed to Github for next steps.
 - Pulled data from Github and created app and associated widgets for source #2 (projectional data coupled with UW major data). Chained multiple observe function in server and data wrangling for each observe function in order to correctly link the selection together in order to create the graph/ chart.
 - Used shinydashboard for better visual presentation. 
-   - *Note!* The photo of the Huksy (bottom of page) changes depending on what occupation is chosen (the educational requirements of the occupation, one photo for if only an associate's is required, another photo for if a bachelors is required, etc).
+   - *Note!* The photo of the Husky (bottom of page) changes depending on what occupation is chosen (the educational requirements of the occupation, one photo for if only an associate's is required, another photo for if a bachelors is required, etc).
 - Pulled data from github and created associated widgets for source #1 (occupational data by state). 
-- Created widgets that update depending on user input and heatmaps that shows data of interest across different states.
-- created pie charts and bar charts that compare occupations within the chosen field.
+- Created widgets that update depending on user input and choropleth maps that shows data of interest across different states.
+- Created pie charts and bar charts that compare occupations within the chosen field.
 - Compiled code and embedded into a single app with two tabs (one for each data set).
 - Pushed remaining changes to github and closed out all issues

@@ -27,4 +27,4 @@ from the Bureau of Labor Statistics](https://www.bls.gov/emp/tables/occupational
 - Created widgets that update depending on user input and choropleth maps that shows data of interest across different states.
 - Created pie charts and bar charts that compare occupations within the chosen field.
 - Compiled code and embedded into a single app with two tabs (one for each data set).
-- Pushed remaining changes to github and closed out all issues
+- Pushed remaining changes to github and closed out all issues.
